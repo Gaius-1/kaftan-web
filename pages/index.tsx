@@ -4,26 +4,26 @@ import Head from "next/head";
 import Basket from "../components/Basket";
 import Header from "../components/Header";
 import Landing from "../components/Landing";
-// import Product from "../components/Product";
+import Product from "../components/Product";
 import { fetchCategories } from "../utils/fetchCategories";
-// import { fetchProducts } from "../utils/fetchProducts";
+import { fetchProducts } from "../utils/fetchProducts";
 // import { getSession } from "next-auth/react";
 // import type { Session } from "next-auth";
 
 
 interface Props {
   categories: Category[];
-  // products: Product[];
+  products: Product[];
   // session: Session | null;
 }
 
-const Home = ({ categories}: Props) => {
-  // console.log(products);
+const Home = ({ categories, products}: Props) => {
+  console.log(products);
 
   const showProducts = (category: number) => {
-    // return products
-    //   .filter((product) => product.category._ref === categories[category]._id)
-    //   .map((product) => <Product product={product} key={product._id} />); // filter products by category
+    return products
+      .filter((product) => product.category._ref === categories[category]._id)
+      .map((product) => <Product product={product} key={product._id} />); // filter products by category
   };
   return (
     <div className="">
@@ -62,10 +62,10 @@ const Home = ({ categories}: Props) => {
               ))}
             </Tab.List>
             <Tab.Panels className="mx-auto max-w-fit pt-10 pb-24 sm:px-4">
-              {/* <Tab.Panel className="tabPanel">{showProducts(0)}</Tab.Panel>
+              <Tab.Panel className="tabPanel">{showProducts(0)}</Tab.Panel>
               <Tab.Panel className="tabPanel">{showProducts(1)}</Tab.Panel>
               <Tab.Panel className="tabPanel">{showProducts(2)}</Tab.Panel>
-              <Tab.Panel className="tabPanel">{showProducts(3)}</Tab.Panel> */}
+              <Tab.Panel className="tabPanel">{showProducts(3)}</Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
@@ -79,13 +79,13 @@ export default Home
 // Backend Code
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const categories = await fetchCategories();
-  // const products = await fetchProducts();
+  const products = await fetchProducts();
   // const session = await getSession(context);
 
   return {
     props: {
       categories,
-      // products,
+      products,
       // session,
     },
   };
