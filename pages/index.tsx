@@ -34,6 +34,8 @@ const Home = ({ categories, products}: Props) => {
 
       <Header />
 
+      <Basket />
+
       <main className="relative h-[200vh] bg-[#E7ECEE]">
         <Landing />
       </main>

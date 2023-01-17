@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { urlFor } from "../sanity";
 import { useDispatch } from "react-redux";
-// import { addToBasket } from "../redux/basketSlice";
+import { addToBasket } from "../redux/basketSlice";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -11,10 +11,10 @@ interface Props {
 }
 
 function Product({ product }: Props) {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const addItemToBasket = () => {
-    // dispatch(addToBasket(product));
+    dispatch(addToBasket(product));
 
     toast.success(`${product.title} added to basket`, {
       position: "bottom-center",
@@ -33,7 +33,7 @@ function Product({ product }: Props) {
       <div className="flex flex-1 items-center justify-between space-x-3">
         <div className="space-y-2 text-xl text-white md:text-2xl">
           <p>{product.title}</p>
-          <p>{product.price}</p>
+          <p>Ghc {product.price}</p>
         </div>
 
         <div
